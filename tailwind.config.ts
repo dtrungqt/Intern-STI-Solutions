@@ -26,7 +26,7 @@ const config: Config = {
         grey1: "rgba(35,50,60,0.5)",
         grey2: "rgba(52,65,72,1)",
         grey3: "#344148",
-        blue1: "rgba(80,171,255,1)",
+        blue1: "#50ABFF",
         blue2: "#0038FF",
         blue3: "#143A4F",
       },

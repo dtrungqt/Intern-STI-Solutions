@@ -1,11 +1,12 @@
 import CustomLoginPage from "../../components/login-layout";
 
 const pageData = {
-  page: "login",
-  buttonTitle: "START",
+  page: "forgot",
+  buttonTitle: "NEXT",
   titleData: {
-    title: "LOG IN",
-    description: "Hi There! Join Us And Enjoy",
+    title: "Forgot Password ?",
+    description:
+      "Please enter the email or phone number you use to sign in Kinect Portal",
   },
   inputsData: [
     {
@@ -15,16 +16,9 @@ const pageData = {
       idInput: "emailOrPhone",
       nameInput: "emailOrPhone",
     },
-    {
-      type: "password",
-      title: "Password",
-      htmlForLabel: "password",
-      idInput: "password",
-      nameInput: "password",
-    },
   ],
 };
 
-export default function LoginPage() {
+export default function ForgotPasswordPage() {
   return <CustomLoginPage isSignUp={true} pageData={pageData} />;
 }

@@ -8,8 +8,9 @@ type Props = {
 
 export default function Button({ children, className = "", link = "" }: Props) {
   type commonStyle = string;
+  
   const commonStyle =
-    "flex items-center justify-center h-[35px] py-3 px-[30px] font-medium text-base rounded-xl";
+    "flex items-center justify-center h-[35px] py-3 px-[30px] rounded-xl";
   if ((link = "")) {
     return (
       <button type="submit" className={`${commonStyle} ${className}`}>

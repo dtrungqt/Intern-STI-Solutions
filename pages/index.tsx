@@ -18,11 +18,14 @@ export default function Home() {
           <div className="flex items-center justify-between gap-x-[5px]">
             <Button
               link="/login"
-              className="border-gradient border-2 border-solid"
+              className="font-medium text-base border-gradient border-2 border-solid"
             >
               Login
             </Button>
-            <Button link="/singup" className="bg-blueBgGradient">
+            <Button
+              link="/singup"
+              className="font-medium text-base bg-blueBgGradient"
+            >
               Become Member
             </Button>
           </div>
