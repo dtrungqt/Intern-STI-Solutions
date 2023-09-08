@@ -1,0 +1,25 @@
+.wrapper__login {
+  @apply max-w-[550px] w-full mx-auto;
+}
+
+.wrapper__login--form {
+  @apply pl-[35px] mt-[193px];
+}
+
+.rounded-inherit {
+  border-radius: inherit;
+}
+
+.wrapper__login--form form::after {
+  content: "";
+  @apply block w-full h-[1px] bg-grey3 mt-[50px];
+  // content: "";
+  // display: block;
+  // background-color: red;
+  // width: 100px;
+  // height: 5px;
+}
+
+.wrapper__login--link .btn-link {
+  @apply bg-blue3 rounded-[10px] w-[124px] h-9 text-sm font-extrabold leading-4;
+}
