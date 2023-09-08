@@ -1,25 +1,32 @@
 import Button from "@/components/button";
 import Link from "next/link";
+// isSignUp: true-false
 
-export default function LoginPage() {
+export default function CustomLoginPage({ isSignUp }) {
   return (
-    <div className="w-full min-h-[1024px] h-full flex justify-end relative bg-loginPage bg-cover bg-center object-cover">
+    <div
+      className={`${
+        isSignUp ? "bg-loginPage" : "bg-signupPage"
+      } w-full min-h-[1024px] h-full flex justify-end relative bg-cover bg-center object-cover`}
+    >
       <aside className="max-w-[650px] w-full bg-black1">
         <div className="wrapper__login">
           <div className="flex justify-end items-center gap-x-[10px] mt-10">
             <h5 className="text-base font-extrabold leading-[19px] text-grey3">
-              HAVEN'T A ACCOUNT?
+              {isSignUp ? "HAVEN'T A ACCOUNT?" : "HAVE A ACCOUNT?"}
             </h5>
             <Link
               href="/signup"
               className="text-base font-extrabold leading-[19px] text-white"
             >
-              SIGN UP
+              {isSignUp ? "SIGN UP" : "LOG IN"}
             </Link>
           </div>
 
           <div className="wrapper__login--form">
-            <h1 className="text-[80px] font-black leading-[94px]">LOG IN</h1>
+            <h1 className="text-[80px] font-black leading-[94px]">
+              {isSignUp ? "LOG IN" : "SIGN UP"}
+            </h1>
             <h6 className="text-sm leading-4 mt-3">
               Hi There! Join Us And Enjoy
             </h6>
@@ -90,6 +97,12 @@ export default function LoginPage() {
                 </Button>
               </div>
             </div>
+            {!isSignUp && (
+              <h6 className="mt-6 text-sm leading-4 text-grey3 ">
+                By registering you agree with our{" "}
+                <span className="text-blue3">Terms & Conditions</span>
+              </h6>
+            )}
           </div>
         </div>
       </aside>

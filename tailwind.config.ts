@@ -14,11 +14,13 @@ const config: Config = {
       backgroundImage: {
         welcomePage: "url('/images/welcome_background.jpg')",
         loginPage: "url('/images/login-page/login-bg.jpg')",
+        signupPage: "url('/images/signup-page/signup-bg.jpg')",
         blueBgGradient:
           "linear-gradient(93.29deg, #4776E6 0%, #4776E6 31.25%, #8E54E9 100%);",
         blueBorderGradient:
           "linear-gradient(93.29deg, #4776E6 0%, #FFFFFF 24.48%, #8E54E9 100%)",
       },
+
       colors: {
         black1: "rgba(20,25,29,0.98)",
         grey1: "rgba(35,50,60,0.5)",
