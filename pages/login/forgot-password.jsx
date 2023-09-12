@@ -1,4 +1,4 @@
-import CustomLoginPage from "../../components/login-layout";
+import AuthenticationLayout from "../../components/authentication-layout";
 
 const pageData = {
   page: "forgot",
@@ -20,5 +20,5 @@ const pageData = {
 };
 
 export default function ForgotPasswordPage() {
-  return <CustomLoginPage isSignUp={true} pageData={pageData} />;
+  return <AuthenticationLayout isSignUp={true} pageData={pageData} />;
 }

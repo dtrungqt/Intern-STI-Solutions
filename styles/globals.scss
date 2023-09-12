@@ -6,7 +6,8 @@
 
 @import "./reset.scss";
 @import "@/pages/index.scss";
-@import "@/components/login-layout.scss";
+@import "@/components/authentication-layout.scss";
+@import "@/components/notification-layout";
 
 @layer base {
   html,

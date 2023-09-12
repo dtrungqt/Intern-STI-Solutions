@@ -1,4 +1,4 @@
-import CustomLoginPage from "../../components/login-layout";
+import AuthenticationLayout from "./../../components/authentication-layout";
 
 const pageData = {
   page: "signup",
@@ -26,5 +26,5 @@ const pageData = {
 };
 
 export default function SignupPage() {
-  return <CustomLoginPage isSignUp={false} pageData={pageData} />;
+  return <AuthenticationLayout isSignUp={false} pageData={pageData} />;
 }

@@ -23,7 +23,7 @@ export default function Home() {
               Login
             </Button>
             <Button
-              link="/singup"
+              link="/signup"
               className="font-medium text-base bg-blueBgGradient"
             >
               Become Member

@@ -2,7 +2,7 @@ import Button from "@/components/button";
 import Link from "next/link";
 // isSignUp: true-false
 
-export default function CustomLoginPage({ isSignUp, pageData }) {
+export default function AuthenticationLayout({ isSignUp, pageData }) {
   let titleStyle = "text-[80px] leading-[94px]";
   if (pageData.page === "forgot" || pageData.page === "reset") {
     titleStyle = "text-[60px] leading-[70px]";
@@ -68,7 +68,7 @@ export default function CustomLoginPage({ isSignUp, pageData }) {
               {isSignUp ? "HAVEN'T A ACCOUNT?" : "HAVE A ACCOUNT?"}
             </h5>
             <Link
-              href="/signup"
+              href={isSignUp ? "/signup" : "/login"}
               className="text-base font-extrabold leading-[19px] text-white"
             >
               {isSignUp ? "SIGN UP" : "LOG IN"}
@@ -86,7 +86,7 @@ export default function CustomLoginPage({ isSignUp, pageData }) {
               {inputForm}
               {pageData.page === "login" && (
                 <Link
-                  href="/forgot"
+                  href="/login/forgot-password"
                   className="self-end text-sm leading-4 text-blue2 mt-[6px]"
                 >
                   Forgot Password?
@@ -99,53 +99,13 @@ export default function CustomLoginPage({ isSignUp, pageData }) {
                 {pageData.buttonTitle}
               </Button>
               {pageData.page === "forgot" && (
-                <Button className="text-base leading-[18.75px] text-blue1 rounded-xl h-[43px] mt-[6px]">
-                  Forgot Password?
+                <Button
+                  link="/login"
+                  className="text-base leading-[18.75px] text-blue1 rounded-xl h-[43px] mt-[6px]"
+                >
+                  Back to Log in
                 </Button>
               )}
-              {/* <label
-                htmlFor="emailOrPhone"
-                className="text-xl font-semibold leading-6"
-              >
-                Email or Phone Number
-              </label>
-              <input
-                type="text"
-                id="emailOrPhone"
-                name="emailOrPhone"
-                className="mt-[10px] bg-grey3 max-w-[386] h-12 rounded-[10px] px-4"
-              />
-              <label
-                htmlFor="password"
-                className="text-xl font-semibold leading-6 mt-[19px]"
-              >
-                Password
-              </label>
-              <div className=" flex bg-grey3 max-w-[386] h-12 rounded-[10px] mt-[10px]">
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  className="bg-transparent border-inherit rounded-inherit  w-full pl-4"
-                />
-                <img
-                  src="/images/login-page/toggle-icon.svg"
-                  alt="toggle-icon"
-                  className="mx-[19.5px]"
-                />
-              </div>
-              <Link
-                href="/forgot"
-                className="self-end text-sm leading-4 text-blue2 mt-[6px]"
-              >
-                Forgot Password?
-              </Link>
-              <Button
-                link=""
-                className="bg-blueBgGradient h-[43px] justify-center text-2xl font-black leading-7 py-[13px] mt-[23px]"
-              >
-                START
-              </Button> */}
             </form>
 
             <div className="wrapper__login--link w-[268px] mt-[23px]">

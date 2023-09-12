@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useState } from "react";
 
 type Props = {
   children: React.ReactNode;
@@ -8,10 +9,11 @@ type Props = {
 
 export default function Button({ children, className = "", link = "" }: Props) {
   type commonStyle = string;
-  
+
   const commonStyle =
     "flex items-center justify-center h-[35px] py-3 px-[30px] rounded-xl";
-  if ((link = "")) {
+
+  if (link === "") {
     return (
       <button type="submit" className={`${commonStyle} ${className}`}>
         {children}
