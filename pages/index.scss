@@ -1,3 +1,8 @@
-.wrapper {
-  @apply w-full h-full px-[35px];
+.wrapper-homepage {
+  @apply max-w-[1312px] w-full mx-auto;
+}
+
+.wrapper-homepage::after {
+  content: "";
+  @apply absolute top-0 w-full h-[415px] bg-backdropHomePage;
 }

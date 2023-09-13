@@ -1,13 +1,13 @@
 import Button from "@/components/button";
 const listGamesData = [
-  { image: "/images/welcome-page/god-of-war.jpg", title: "God of War" },
+  { image: "/images/games/god-of-war.jpg", title: "God of War" },
   {
-    image: "/images/welcome-page/bioshock-infinite.jpg",
+    image: "/images/games/bioshock-infinite.jpg",
     title: "Bioshock Infinite",
   },
-  { image: "/images/welcome-page/the-legant.jpg", title: "The Legant" },
-  { image: "/images/welcome-page/car-crash.jpg", title: "Car Crash" },
-  { image: "/images/welcome-page/fire-car.jpg", title: "Fire Car" },
+  { image: "/images/games/the-legant.jpg", title: "The Legant" },
+  { image: "/images/games/car-crash.jpg", title: "Car Crash" },
+  { image: "/images/games/fire-car.jpg", title: "Fire Car" },
 ];
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
           <div className="flex items-center justify-between gap-x-[5px]">
             <Button
               link="/login"
-              className="font-medium text-base border-gradient border-2 border-solid"
+              className="font-medium text-base border-gradient"
             >
               Login
             </Button>

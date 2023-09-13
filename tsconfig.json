@@ -22,7 +22,8 @@
     "**/*.ts",
     "**/*.tsx",
     "components/button.tsx",
-    "pages/login/index.jsx"
+    "pages/login/index.jsx",
+    "pages/index.jsx"
   ],
   "exclude": ["node_modules"]
 }

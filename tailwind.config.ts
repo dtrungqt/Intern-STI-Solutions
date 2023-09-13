@@ -16,6 +16,8 @@ const config: Config = {
         loginPage: "url('/images/login-page/login-bg.jpg')",
         signupPage: "url('/images/signup-page/signup-bg.jpg')",
         signupSuccessPage: "url('/images/login-page/success-bg.jpg')",
+        backdropHomePage:
+          "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%)",
         blueBgGradient:
           "linear-gradient(93.29deg, #4776E6 0%, #4776E6 31.25%, #8E54E9 100%);",
         blueBorderGradient:
@@ -25,6 +27,8 @@ const config: Config = {
       colors: {
         black1: "rgba(20,25,29,0.98)",
         black2: "rgba(26,32,36,1)",
+        black3: "rgba(26,32,36,0.5)",
+        black4: "rgba(47, 57, 64, 1)",
         grey1: "rgba(35,50,60,0.5)",
         grey2: "rgba(52,65,72,1)",
         grey3: "rgba(52,65,72,1)",
@@ -37,9 +41,11 @@ const config: Config = {
       boxShadow: {
         successBtn: "0px 0px 10px 0px rgba(151, 240, 145, 0.3)",
         failBtn: "0px 0px 10px 0px rgba(240, 145, 145, 0.3);",
+        headerHome: "0px 4px 14px 0px rgba(35, 50, 60, 0.5);",
       },
     },
   },
   plugins: [],
 };
 export default config;
+// background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
