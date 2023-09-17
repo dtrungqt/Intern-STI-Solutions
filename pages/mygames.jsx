@@ -2,7 +2,7 @@ import GamesPageLayout from "@/components/gamespage-layout";
 import NavLinks from "@/components/allgames/nav-links";
 import Image from "next/image";
 
-const links = ["Home", "Tag Category"];
+const links = ["Home", "My Games"];
 
 const gamesData = [
   {

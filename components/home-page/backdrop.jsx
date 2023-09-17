@@ -11,7 +11,7 @@ const backdropData = {
 
 export default function BackDrop() {
   return (
-    <div className="wrapper-backdrop relative mt-4">
+    <div className="wrapper-backdrop relative pt-[80px]">
       <Image
         src={backdropData.img}
         alt={backdropData.title}

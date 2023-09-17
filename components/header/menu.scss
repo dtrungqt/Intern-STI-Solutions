@@ -1,0 +1,4 @@
+.container-menu--content__title::before {
+  content: "";
+  @apply absolute left-0 top-[35px] block h-[1px] w-full bg-grey2;
+}

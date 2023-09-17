@@ -1,0 +1,8 @@
+.wrapper-backdrop {
+  @apply max-w-[1312px] w-full mx-auto;
+}
+
+.wrapper-backdrop::after {
+  content: "";
+  @apply absolute top-0 w-full h-[415px] max-h-full bg-backdropHomePage rounded-[20px] mt-[80px];
+}

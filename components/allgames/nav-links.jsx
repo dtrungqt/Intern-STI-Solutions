@@ -8,15 +8,16 @@ export default function NavLinks(props) {
   return (
     <nav
       className={`${
-        !props.larger
-          ? "wrapper-homepage"
-          : "max-w-[1266px] w-full mx-auto mt-[30px]"
-      } flex items-center`}
+        !props.larger ? "max-w-[1312px]" : "max-w-[1266px]"
+      } flex items-center w-full mx-auto pt-[90px]`}
     >
       {links.map((link, i) => {
-        let path = `/allgames/${link}`;
+        let path = `/allgames/${link.toLowerCase()}`;
         if (link.toLowerCase() === "all games") {
           path = "/allgames";
+        }
+        if (link.toLowerCase() === "my games") {
+          path = "/mygames";
         }
         if (link.toLowerCase() === "home") {
           path = "/";
