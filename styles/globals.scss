@@ -9,10 +9,22 @@
 @import "@/pages/welcome.scss";
 @import "@/components/authentication-layout.scss";
 @import "@/components/notification-layout";
+@import "@/components/home-page/popular-games.scss";
+@import "@/components/home-page/allgames.scss";
 
 @layer base {
   html,
   body {
     @apply font-roboto text-white font-medium;
+  }
+}
+
+@layer utilities {
+  .wrapper-homepage {
+    @apply max-w-[1312px] w-full mx-auto mt-[30px];
+  }
+
+  .transition-effect {
+    transition: all 0.3s linear;
   }
 }

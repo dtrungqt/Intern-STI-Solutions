@@ -1,8 +1,8 @@
-.wrapper-homepage {
+.wrapper-backdrop {
   @apply max-w-[1312px] w-full mx-auto;
 }
 
-.wrapper-homepage::after {
+.wrapper-backdrop::after {
   content: "";
-  @apply absolute top-0 w-full h-[415px] bg-backdropHomePage;
+  @apply absolute top-0 w-full h-[415px] max-h-full bg-backdropHomePage rounded-[20px];
 }

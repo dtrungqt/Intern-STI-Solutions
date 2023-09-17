@@ -4,17 +4,19 @@ export default function Header() {
   return (
     <header className="w-full h-[80px] bg-black3 flex justify-between items-center shadow-headerHome pl-[33px] pr-[65px]">
       <div className="flex items-center gap-[33px]">
-        <Image
+        <img
           src="/images/home-page/menu-rounded-icon.svg"
           alt="menu icon"
-          width={18}
-          height={12}
+          className="shrink-0"
+          // width={18}
+          // height={12}
         />
-        <Image
+        <img
           src="/images/home-page/kinect-icon.svg"
           alt="logo icon"
-          width={103}
-          height={26}
+          className="shrink-0"
+          // width={103}
+          // height={26}
         />
       </div>
       <div className="flex w-[600px] gap-[42px] justify-between">
@@ -24,11 +26,12 @@ export default function Header() {
             placeholder="Search"
             className="bg-transparent text-base leading-[19px] flex-1 pr-2"
           />
-          <Image
+          <img
             src="/images/home-page/find-icon.svg"
             alt="find icon"
-            width={18.5}
-            height={18.5}
+            className="shrink-0"
+            // width={18.5}
+            // height={18.5}
           />
         </div>
         <div className="flex items-center gap-4 max-w-[165px]">
@@ -36,11 +39,12 @@ export default function Header() {
             <h6 className="text-base font-normal leading-[19px]">
               Cody Fisher
             </h6>
-            <Image
+            <img
               src="/images/home-page/arrow-icon.svg"
               alt="arrow icon"
-              width={11}
-              height={7}
+              className="shrink-0"
+              // width={11}
+              // height={7}
             />
           </div>
           <Image
@@ -48,6 +52,7 @@ export default function Header() {
             width={48}
             height={48}
             alt="avata icon"
+            className="shrink-0"
           />
         </div>
       </div>

@@ -1,0 +1,12 @@
+// px-[11px] py-[14px] bg-black
+.popular-container:hover {
+  @apply max-w-[514px] w-full px-[11px] py-[14px] bg-black transition-effect;
+
+  .popular-container--card {
+    @apply block;
+  }
+}
+
+.popular-container--card {
+  @apply hidden;
+}

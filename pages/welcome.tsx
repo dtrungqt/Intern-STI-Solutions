@@ -1,13 +1,13 @@
 import Button from "@/components/button";
 const listGamesData = [
-  { image: "/images/games/god-of-war.jpg", title: "God of War" },
+  { image: "/images/welcome-page/god-of-war.jpg", title: "God of War" },
   {
-    image: "/images/games/bioshock-infinite.jpg",
+    image: "/images/welcome-page/bioshock-infinite.jpg",
     title: "Bioshock Infinite",
   },
-  { image: "/images/games/the-legant.jpg", title: "The Legant" },
-  { image: "/images/games/car-crash.jpg", title: "Car Crash" },
-  { image: "/images/games/fire-car.jpg", title: "Fire Car" },
+  { image: "/images/welcome-page/the-legant.jpg", title: "The Legant" },
+  { image: "/images/welcome-page/car-crash.jpg", title: "Car Crash" },
+  { image: "/images/welcome-page/fire-car.jpg", title: "Fire Car" },
 ];
 
 export default function Home() {
@@ -53,7 +53,7 @@ export default function Home() {
         </div>
       </main>
       <footer className="pl-[120px] pb-[37px]">
-        <div className="flex gap-[72px] mb-[14px]">
+        <div className="flex gap-[30px] mb-[14px]">
           <img src="/images/welcome-page/left-icon.svg" alt="left-icon" />
           <img src="/images/welcome-page/right-icon.svg" alt="right-icon" />
         </div>
