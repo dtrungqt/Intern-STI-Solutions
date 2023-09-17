@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -8,16 +9,14 @@ export default function Header() {
           src="/images/home-page/menu-rounded-icon.svg"
           alt="menu icon"
           className="shrink-0"
-          // width={18}
-          // height={12}
         />
-        <img
-          src="/images/home-page/kinect-icon.svg"
-          alt="logo icon"
-          className="shrink-0"
-          // width={103}
-          // height={26}
-        />
+        <Link href="/">
+          <img
+            src="/images/home-page/kinect-icon.svg"
+            alt="logo icon"
+            className="shrink-0"
+          />
+        </Link>
       </div>
       <div className="flex w-[600px] gap-[42px] justify-between">
         <div className="flex-1 flex items-center justify-between h-[40px] rounded-[20px] border pl-[19px] pr-[12px]">

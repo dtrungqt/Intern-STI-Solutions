@@ -1,4 +1,4 @@
-import Header from "@/components/header";
+import Header from "@/components/header.jsx";
 
 export default function GamesPageLayout({ children }) {
   return (

@@ -31,6 +31,8 @@ const config: Config = {
         black2: "rgba(26,32,36,1)",
         black3: "rgba(26,32,36,0.5)",
         black4: "rgba(47, 57, 64, 1)",
+        black5: "rgba(16, 16, 16, 1)",
+        black6: "rgba(20, 25, 29, 1)",
         grey1: "rgba(35,50,60,0.5)",
         grey2: "rgba(52,65,72,1)",
         grey3: "rgba(52,65,72,1)",
@@ -42,6 +44,7 @@ const config: Config = {
         green1: "rgba(61,231,50,1)",
         red1: "rgba(231, 50, 50, 1)",
         pink1: "rgba(251, 4, 255, 1)",
+        pink2: "rgba(251, 4, 255, 0.5)",
         white1: "rgba(255, 255, 255, 0.7)",
       },
       boxShadow: {

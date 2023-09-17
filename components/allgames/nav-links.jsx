@@ -4,8 +4,15 @@ import { Fragment } from "react";
 export default function NavLinks(props) {
   const links = props.path;
   const length = links.length;
+
   return (
-    <nav className="wrapper-homepage flex items-center">
+    <nav
+      className={`${
+        !props.larger
+          ? "wrapper-homepage"
+          : "max-w-[1266px] w-full mx-auto mt-[30px]"
+      } flex items-center`}
+    >
       {links.map((link, i) => {
         let path = `/allgames/${link}`;
         if (link.toLowerCase() === "all games") {
