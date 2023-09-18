@@ -1,5 +1,7 @@
 import Image from "next/image";
 import DownLoadButton from "@/components/download-button";
+import GameTag from "./game-tag";
+import HeartIcon from "./heart-icon";
 
 const GameItem = (props) => {
   const data = props.data;
@@ -15,30 +17,14 @@ const GameItem = (props) => {
       />
 
       <div className="absolute left-[19px] bottom-[18px]">
-        <ul className="flex justify-start items-center gap-[2px]">
-          {data.tags.map((tag) => (
-            <li
-              key={tag}
-              className="flex items-center justify-center text-[10px] leading-3 p-[5px] rounded-[15px] bg-black4 h-[17px]"
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
+        <GameTag genre={data.tags} />
         <div className="flex gap-5 items-center mt-[5px]">
           <h3 className="text-xl leading-6 font-semibold">{data.title}</h3>
-          {data.favorite && (
-            <img
-              src="/images/home-page/heart-red-icon.svg"
-              alt="red heart icon"
-            />
-          )}
-          {!data.favorite && (
-            <img
-              src="/images/home-page/heart-trans-icon.svg"
-              alt="trans heart icon"
-            />
-          )}
+          <HeartIcon
+            favorite={data.favorite}
+            imgRedHeart="/images/home-page/heart-red-icon.svg"
+            imgTransHeart="/images/home-page/heart-trans-icon.svg"
+          />
         </div>
         <DownLoadButton className="mt-[8px]" />
       </div>

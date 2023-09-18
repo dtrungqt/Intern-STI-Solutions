@@ -1,6 +1,7 @@
 import Button from "@/components/button";
 import Image from "next/image";
 import DownLoadButton from "./../download-button";
+import GameTag from "@/components/game-tag";
 
 const backdropData = {
   tags: ["Action", "Adventure", "Art"],
@@ -20,16 +21,7 @@ export default function BackDrop() {
         className="wrapper-backdrop--img rounded-[20px]"
       />
       <div className="max-w-[461px] absolute top-[224px] left-[28px] z-10">
-        <ul className="flex justify-start items-center gap-[2px]">
-          {backdropData.tags.map((tag) => (
-            <li
-              key={tag}
-              className="flex items-center justify-center text-[10px] leading-3 p-[5px] rounded-[15px] bg-black4 h-[17px]"
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
+        <GameTag genre={backdropData.tags} />
         <h2 className="mt-[6px] text-4xl leading-[42px] font-semibold">
           {backdropData.title}
         </h2>

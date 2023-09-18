@@ -16,6 +16,7 @@ const config: Config = {
         loginPage: "url('/images/login-page/login-bg.jpg')",
         signupPage: "url('/images/signup-page/signup-bg.jpg')",
         signupSuccessPage: "url('/images/login-page/success-bg.jpg')",
+        detailPage: "url('/images/game-detail/bioshock-bg.png')",
         backdropHomePage:
           "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%)",
         blueBgGradient:
@@ -37,6 +38,7 @@ const config: Config = {
         grey2: "rgba(52,65,72,1)",
         grey3: "rgba(52,65,72,1)",
         grey4: "rgba(35,50,60,1)",
+        grey5: "rgba(175, 175, 175, 1)",
         blue1: "rgba(80,171,255,1)",
         blue2: "rgba(0,56,255,1)",
         blue3: "rgba(20,58,79,1)",

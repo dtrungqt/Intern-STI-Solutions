@@ -4,6 +4,7 @@ import { Fragment } from "react";
 export default function NavLinks(props) {
   const links = props.path;
   const length = links.length;
+  const isDetailPath = !!props.isDetail;
 
   return (
     <nav
@@ -13,14 +14,22 @@ export default function NavLinks(props) {
     >
       {links.map((link, i) => {
         let path = `/allgames/${link.toLowerCase()}`;
-        if (link.toLowerCase() === "all games") {
-          path = "/allgames";
-        }
-        if (link.toLowerCase() === "my games") {
-          path = "/mygames";
-        }
-        if (link.toLowerCase() === "home") {
-          path = "/";
+
+        if (!isDetailPath) {
+          if (link.toLowerCase() === "all games") {
+            path = "/allgames";
+          }
+          if (link.toLowerCase() === "my games") {
+            path = "/mygames";
+          }
+          if (link.toLowerCase() === "home") {
+            path = "/";
+          }
+        } else {
+          path = `/${link.toLowerCase().replace(/\s/g, "")}`;
+          if (link.toLowerCase() === "home") {
+            path = "/";
+          }
         }
 
         if (i === length - 1) {
