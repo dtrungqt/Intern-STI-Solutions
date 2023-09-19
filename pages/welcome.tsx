@@ -1,4 +1,4 @@
-import Button from "@/components/button";
+import Button from "@/components/button/button";
 const listGamesData = [
   { image: "/images/welcome-page/god-of-war.jpg", title: "God of War" },
   {

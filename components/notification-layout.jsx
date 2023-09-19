@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Button from "./button";
+import Button from "./button/button";
 
 export default function NotificationLayout({ pageData }) {
   return (

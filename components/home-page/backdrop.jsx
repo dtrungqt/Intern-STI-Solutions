@@ -1,7 +1,7 @@
-import Button from "@/components/button";
+import Button from "@/components/button/button";
 import Image from "next/image";
-import DownLoadButton from "./../download-button";
-import GameTag from "@/components/game-tag";
+import DownLoadButton from "../button/download-button";
+import GameTag from "@/components/games/game-tag";
 
 const backdropData = {
   tags: ["Action", "Adventure", "Art"],

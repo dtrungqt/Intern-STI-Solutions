@@ -21,7 +21,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/button.tsx",
+    "components/button/button.tsx",
     "pages/login/index.jsx",
     "pages/index.jsx",
     "components/header/header.jsx"

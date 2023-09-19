@@ -1,19 +1,34 @@
 import Link from "next/link";
 
-import GameItem from "../game-item";
+import GameItem from "../games/game-item";
+import Button from "../button/button";
 
 const genreData = ["Action", "Adventure", "Arcade", "Reality"];
 
 const AllGames = ({ gamesData, genre }) => {
   return (
     <div className="wrapper-homepage wrapper-allgames mt-[30px] pb-7">
-      <div className="mr-[13px]">
-        <h3 className="wrapper-allgames--title text-lg font-bold leading-[21px]">
-          ALL
-        </h3>
-        <h2 className="text-[32px] font-extrabold leading-[38px] ml-[9px] mt-[6px]">
-          GAMES
-        </h2>
+      <div className="flex items-end justify-between">
+        <div className="mr-[13px]">
+          <h3 className="wrapper-allgames--title text-lg font-bold leading-[21px]">
+            ALL
+          </h3>
+          <h2 className="text-[32px] font-extrabold leading-[38px] ml-[9px] mt-[6px]">
+            GAMES
+          </h2>
+        </div>
+        {!genre && (
+          <Button
+            link="/allgames"
+            className="gap-[6px] bg-black text-blue4 text-sm leading-4 rounded-[15px] mt-[19px]"
+          >
+            View All
+            <img
+              src="/images/home-page/arrow-next-icon.svg"
+              alt="arrow-next-icon"
+            />
+          </Button>
+        )}
       </div>
 
       {/* Genre tag  */}

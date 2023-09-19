@@ -3,9 +3,9 @@ import Image from "next/image";
 import GamesPageLayout from "@/components/gamespage-layout";
 import NavLinks from "@/components/allgames/nav-links";
 import HeartIcon from "@/components/heart-icon";
-import GameTag from "@/components/game-tag";
-import DownLoadButton from "@/components/download-button";
-import Button from "@/components/button";
+import GameTag from "@/components/games/game-tag";
+import DownLoadButton from "@/components/button/download-button";
+import Button from "@/components/button/button";
 
 const link = ["Home", "Bioshock Infinite"];
 const gameData = {

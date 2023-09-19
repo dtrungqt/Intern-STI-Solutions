@@ -1,5 +1,5 @@
 import Image from "next/image";
-import DownLoadButton from "../download-button";
+import DownLoadButton from "../button/download-button";
 
 const gamesData = [
   {

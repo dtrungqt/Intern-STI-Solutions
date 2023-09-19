@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import GamesPageLayout from "@/components/gamespage-layout";
-import Button from "@/components/button";
+import Button from "@/components/button/button";
 
 function NotFoundPage() {
   return (

@@ -1,7 +1,7 @@
 import Image from "next/image";
-import DownLoadButton from "@/components/download-button";
+import DownLoadButton from "@/components/button/download-button";
 import GameTag from "./game-tag";
-import HeartIcon from "./heart-icon";
+import HeartIcon from "../heart-icon";
 
 const GameItem = (props) => {
   const data = props.data;

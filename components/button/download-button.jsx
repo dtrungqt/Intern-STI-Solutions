@@ -1,4 +1,4 @@
-import Button from "@/components/button";
+import Button from "@/components/button/button";
 
 export default function DownLoadButton(props) {
   const classes = `${props.className} bg-blueBgGradient text-base leading-[19px]`;

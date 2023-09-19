@@ -1,30 +1,106 @@
+import Link from "next/link";
+
 import AuthenticationLayout from "../../components/authentication-layout";
+import InputName from "../../components/inputs/input-name";
+import Button from "@/components/button/button";
+import InputPassword from "../../components/inputs/input-password";
+import useInput from "@/hooks/use-input";
 
 const pageData = {
   page: "login",
-  buttonTitle: "START",
   titleData: {
     title: "LOG IN",
     description: "Hi There! Join Us And Enjoy",
   },
-  inputsData: [
-    {
-      type: "text",
-      title: "Email or Phone Number",
-      htmlForLabel: "emailOrPhone",
-      idInput: "emailOrPhone",
-      nameInput: "emailOrPhone",
-    },
-    {
-      type: "password",
-      title: "Password",
-      htmlForLabel: "password",
-      idInput: "password",
-      nameInput: "password",
-    },
-  ],
+};
+
+const nameInputValidateFn = (value) => {
+  if (value.trim() !== "") {
+    return true;
+  }
+  return false;
+};
+
+const passwordInputValidateFn = (value) => {
+  if (value.trim() !== "" && value.length > 7) {
+    return true;
+  }
+  return false;
 };
 
 export default function LoginPage() {
-  return <AuthenticationLayout isSignUp={true} pageData={pageData} />;
+  const {
+    value: enteredName,
+    isValid: enteredNameIsValid,
+    hasError: nameInputHasError,
+    valueChangeHandler: nameInputChangeHandler,
+    inputBlurHandler: nameInputBlurHandler,
+    reset: resetNameInput,
+  } = useInput(nameInputValidateFn);
+
+  const {
+    value: enteredPassword,
+    isValid: enteredPasswordIsValid,
+    hasError: passwordInputHasError,
+    valueChangeHandler: passwordInputChangeHandler,
+    inputBlurHandler: passwordInputBlurHandler,
+    reset: resetPasswordInput,
+  } = useInput(passwordInputValidateFn);
+
+  let formIsValid = false;
+  if (enteredNameIsValid && enteredPasswordIsValid) formIsValid = true;
+
+  const formSubmissionHandler = (event) => {
+    console.log(`Form is Valid? ${formIsValid}`);
+    event.preventDefault();
+
+    if (!formIsValid) {
+      //Chưa nhập form thì hiển thị lỗi
+      nameInputBlurHandler();
+      passwordInputBlurHandler();
+      return;
+    }
+
+    console.log(enteredName);
+    resetNameInput();
+
+    console.log(enteredPassword);
+    resetPasswordInput();
+  };
+
+  return (
+    <AuthenticationLayout isSignUp={true} pageData={pageData}>
+      <form
+        className="mt-[50px] flex flex-col max-w-[386px] w-full"
+        onSubmit={formSubmissionHandler}
+      >
+        <InputName
+          onNameInputChange={nameInputChangeHandler}
+          onNameInputBlur={nameInputBlurHandler}
+          nameValue={enteredName}
+          hasError={nameInputHasError}
+        />
+        <InputPassword
+          onPasswordInputChange={passwordInputChangeHandler}
+          onPasswordInputBlur={passwordInputBlurHandler}
+          passwordValue={enteredPassword}
+          hasError={passwordInputHasError}
+        />
+        <Link
+          href="/login/forgot-password"
+          className="self-end text-sm leading-4 text-blue2 mt-[6px]"
+        >
+          Forgot Password?
+        </Link>
+
+        <Button
+          link=""
+          className="bg-blueBgGradient h-[43px] justify-center text-2xl font-black leading-7 py-[13px] mt-[23px]"
+          // disabled={!formIsValid}
+        >
+          START
+        </Button>
+      </form>
+    </AuthenticationLayout>
+  );
 }

@@ -8,10 +8,12 @@
 @import "@/pages/index.scss";
 @import "@/pages/welcome.scss";
 @import "@/components/authentication-layout.scss";
-@import "@/components/notification-layout";
+@import "@/components/notification-layout.scss";
+@import "@/components/button/button.scss";
 @import "@/components/home-page/popular-games.scss";
 @import "@/components/home-page/allgames.scss";
 @import "@/components/home-page/backdrop.scss";
+@import "@/components/home-page/news-game.scss";
 @import "@/components/header/menu.scss";
 
 @layer base {
