@@ -1,27 +1,36 @@
 import Image from "next/image";
+
 import DownLoadButton from "@/components/button/download-button";
 import GameTag from "./game-tag";
 import HeartIcon from "../heart-icon";
+import Link from "next/link";
 
 const GameItem = (props) => {
   const data = props.data;
+  const tags = props.data.genres.map((genre) => genre.name);
 
   return (
-    <div className="relative flex-[1_0_312px] h-[348px]">
+    <div className="game-item--container relative flex-[1_1_312px] h-[348px] ">
       <Image
-        src={data.img}
-        alt={data.title}
-        width={312}
-        height={348}
-        className="absolute top-0 left-0 rounded-[10px]"
+        src={data.image_url}
+        alt={data.name}
+        layout="fill"
+        objectFit="cover"
+        priority
+        className="game-item--container__img absolute top-0 left-0 rounded-[10px]"
       />
 
-      <div className="absolute left-[19px] bottom-[18px]">
-        <GameTag genre={data.tags} />
+      <div className="absolute left-[19px] bottom-[18px] z-10">
+        <GameTag genre={tags} />
         <div className="flex gap-5 items-center mt-[5px]">
-          <h3 className="text-xl leading-6 font-semibold">{data.title}</h3>
+          <Link
+            href={`/${data.name.toLowerCase().replace(/\s/g, "")}`}
+            className="text-xl leading-6 font-semibold"
+          >
+            {data.name}
+          </Link>
           <HeartIcon
-            favorite={data.favorite}
+            favorite={data.isLoved}
             imgRedHeart="/images/home-page/heart-red-icon.svg"
             imgTransHeart="/images/home-page/heart-trans-icon.svg"
           />

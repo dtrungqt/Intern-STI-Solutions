@@ -45,7 +45,7 @@ export default function Home() {
             repair; aorto-bi-iliac prosthesis
           </p>
           <Button
-            link="/about"
+            link="/login"
             className="bg-blueBgGradient self-end mr-[17px]"
           >
             Learn More

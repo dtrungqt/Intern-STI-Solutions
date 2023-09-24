@@ -4,64 +4,57 @@ import NewsGame from "./../components/home-page/news-game";
 import PopularGames from "./../components/home-page/popular-games";
 import AllGames from "./../components/home-page/allgames";
 
-const allGamesData = [
-  {
-    tags: ["Action", "Adventure"],
-    title: "Red Dead II: Redemption",
-    img: "/images/games/game1.jpg",
-    favorite: true,
-  },
-  {
-    tags: ["Action", "Adventure"],
-    title: "Red Dead II: Redemption",
-    img: "/images/games/game2.jpg",
-    favorite: true,
-  },
-  {
-    tags: ["Action", "Adventure"],
-    title: "Red Dead II: Redemption",
-    img: "/images/games/game3.jpg",
-    favorite: false,
-  },
-  {
-    tags: ["Action", "Adventure"],
-    title: "Red Dead II: Redemption",
-    img: "/images/games/game4.jpg",
-    favorite: false,
-  },
-  {
-    tags: ["Action", "Adventure"],
-    title: "Red Dead II: Redemption",
-    img: "/images/games/game1.jpg",
-    favorite: true,
-  },
-  {
-    tags: ["Action", "Adventure"],
-    title: "Red Dead II: Redemption",
-    img: "/images/games/game2.jpg",
-    favorite: true,
-  },
-  {
-    tags: ["Action", "Adventure"],
-    title: "Red Dead II: Redemption",
-    img: "/images/games/game3.jpg",
-    favorite: false,
-  },
-  {
-    tags: ["Action", "Adventure"],
-    title: "Red Dead II: Redemption",
-    img: "/images/games/game4.jpg",
-    favorite: false,
-  },
-];
+import getNewGames from "@/api-services/get-new-games";
+import getAllsGame from "@/api-services/get-all-games";
 
-export default function HomePage() {
+export default function HomePage(props) {
   return (
     <GamesPageLayout>
-      <BackDrop />
-      <NewsGame />
-      <PopularGames />
-      <AllGames gamesData={allGamesData} genre={false} />
+      <BackDrop gamesData={props.backdropData} />
+      <NewsGame gamesData={props.newGamesData} />
+      {/* API endpoint của Popular games trả về 1 mảng rỗng, vì vậy ta dùng tạm dữ liệu trả về của New games  */}
+      <PopularGames gamesData={props.popularGamesData} />
+      <AllGames gamesData={props.allGamesData} genre={false} />
     </GamesPageLayout>
   );
+}
+
+export async function getStaticProps() {
+  const limitNum = 10;
+  const pageNum = 1;
+  try {
+    const newGamesResult = await getNewGames(limitNum, pageNum);
+    const allGamesResult = await getAllsGame(limitNum, pageNum);
+
+    if (!allGamesResult || allGamesResult.length === 0) {
+      return {
+        notFound: true,
+      };
+    }
+
+    // Vì backend trả về chỉ 2 đối tượng dữ liệu nên ta nối chúng để tạo 1 mảng có 8 đối tượng dữ liệu
+    return {
+      props: {
+        backdropData: [...newGamesResult],
+        newGamesData: [...newGamesResult, ...newGamesResult, ...newGamesResult],
+        popularGamesData: [
+          ...newGamesResult,
+          ...newGamesResult,
+          ...newGamesResult,
+        ],
+        allGamesData: [
+          ...allGamesResult,
+          ...allGamesResult,
+          ...allGamesResult,
+          ...allGamesResult,
+        ],
+      },
+      revalidate: 600,
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      notFound: true,
+    };
+  }
 }

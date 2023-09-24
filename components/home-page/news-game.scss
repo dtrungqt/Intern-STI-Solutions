@@ -1,0 +1,33 @@
+.news-game--container .slick-slide > div {
+  margin: 0 10px;
+}
+
+.news-game--container .slick-list {
+  margin: 0 -10px;
+}
+
+// Làm cho các item nằm ở bên cạnh trái thay vì ở center (vì mặt định css của nó là mx-auto)
+.news-game--container .slick-track {
+  @apply ml-0 mr-0;
+}
+
+.news-game--container .slick-prev {
+  z-index: 10;
+  left: 15px;
+  width: 50px;
+  height: 50px;
+}
+
+.news-game--container .slick-next {
+  right: 15px;
+  width: 50px;
+  height: 50px;
+}
+
+.news-game--container .slick-arrow.slick-prev::before {
+  font-size: 50px;
+}
+
+.news-game--container .slick-arrow.slick-next::before {
+  font-size: 50px;
+}

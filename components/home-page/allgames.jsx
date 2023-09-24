@@ -6,6 +6,7 @@ import Button from "../button/button";
 const genreData = ["Action", "Adventure", "Arcade", "Reality"];
 
 const AllGames = ({ gamesData, genre }) => {
+  // console.log(gamesData);
   return (
     <div className="wrapper-homepage wrapper-allgames mt-[30px] pb-7">
       <div className="flex items-end justify-between">
@@ -74,5 +75,4 @@ const AllGames = ({ gamesData, genre }) => {
     </div>
   );
 };
-
 export default AllGames;
