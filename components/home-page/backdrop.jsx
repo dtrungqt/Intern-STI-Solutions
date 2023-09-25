@@ -43,9 +43,7 @@ export default function BackDrop({ gamesData }) {
       <div className="max-w-[461px] absolute top-[224px] left-[28px] z-10">
         <GameTag genre={gameTags} />
         <Link
-          href={gamesData[currentSlider].name
-            .toLocaleLowerCase()
-            .replace(/\s/g, "")}
+          href={`/${gamesData[currentSlider].id.toString()}`}
           className="mt-[6px] text-4xl leading-[42px] font-semibold"
         >
           {gamesData[currentSlider].name}

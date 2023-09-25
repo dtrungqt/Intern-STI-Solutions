@@ -24,7 +24,7 @@ const GameItem = (props) => {
         <GameTag genre={tags} />
         <div className="flex gap-5 items-center mt-[5px]">
           <Link
-            href={`/${data.name.toLowerCase().replace(/\s/g, "")}`}
+            href={`/${data.id}`}
             className="text-xl leading-6 font-semibold"
           >
             {data.name}

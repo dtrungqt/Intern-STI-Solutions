@@ -8,7 +8,7 @@ export default function PageCustom(props) {
     <GamesPageLayout>
       <NavLinks path={props.links} />
       <AllGames gamesData={props.allGamesData} genre={props.genreData} />
-      <PageNumber limit={props.limit} />
+      <PageNumber />
     </GamesPageLayout>
   );
 }

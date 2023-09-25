@@ -1,32 +1,29 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { paginateActions } from "../../store/index";
+
 import PageCustom from "@/components/allgames/page-custom";
 import getAllsGame from "@/api-services/get-all-games";
-import { useState } from "react";
-
-/*
-const allGamesData = [
-  {
-    tags: ["Action", "Adventure"],
-    title: "Red Dead II: Redemption",
-    img: "/images/games/game1.jpg",
-    favorite: true,
-  }
-];
-*/
+import getAllGenres from "../../api-services/get-all-genres";
 
 const links = ["Home", "All Games"];
 
 const genreData = { display: true, type: "none" };
 
 export default function AllGamesPage(props) {
-  const [pageNumber, setPageNumber] = useState(1);
-
+  const dispatch = useDispatch();
   const pageLimit = 8;
-  const totalPages = Math.ceil(props.allGamesData.length / pageLimit);
+  const pageNumber = useSelector((state) => state.currentPage);
+
+  const totalPage = Math.ceil(props.allGamesData.length / pageLimit);
+  useEffect(() => {
+    dispatch(paginateActions.setTotalPage({ totalPage }));
+  }, [totalPage]);
 
   let gameData = [];
   if (pageNumber === 1) {
     gameData = props.allGamesData.slice(0, pageLimit);
-  } else if (pageNumber === totalPages) {
+  } else if (pageNumber === totalPage) {
     gameData = props.allGamesData.slice((pageNumber - 1) * pageLimit);
   } else {
     gameData = props.allGamesData.slice(
@@ -36,12 +33,7 @@ export default function AllGamesPage(props) {
   }
 
   return (
-    <PageCustom
-      links={links}
-      allGamesData={gameData}
-      genreData={genreData}
-      limit={totalPages}
-    />
+    <PageCustom links={links} allGamesData={gameData} genreData={genreData} />
   );
 }
 
@@ -50,6 +42,10 @@ export async function getStaticProps() {
   const pageNum = 1;
   try {
     const allGamesResult = await getAllsGame(limitNum, pageNum);
+    const genresData = await getAllGenres();
+    const transformedGenresData = genresData.map((genre) => {
+      return { name: genre.name, icon: genre.icon, id: genre.id };
+    });
 
     if (!allGamesResult || allGamesResult.length === 0) {
       return {
@@ -72,6 +68,7 @@ export async function getStaticProps() {
           ...allGamesResult,
           ...allGamesResult,
         ],
+        allGenres: transformedGenresData,
       },
       revalidate: 600,
     };

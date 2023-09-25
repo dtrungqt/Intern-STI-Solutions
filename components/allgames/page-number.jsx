@@ -1,28 +1,23 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { paginateActions } from "../../store/index";
 
-export default function PageNumber({ limit }) {
-  const [pageNumber, setPageNumber] = useState(1);
+export default function PageNumber() {
+  const dispatch = useDispatch();
+  const currentPage = useSelector((state) => state.currentPage);
+  const totalPage = useSelector((state) => state.totalPage);
 
   const goToPreviousPage = () => {
-    setPageNumber((prevState) => {
-      if (prevState === 1) {
-        return 1;
-      }
-      return prevState - 1;
-    });
+    console.log("PreviousPage");
+    dispatch(paginateActions.goToPreviousPage());
   };
 
   const goToNextPage = () => {
-    setPageNumber((prevState) => {
-      if (prevState === limit) {
-        return limit;
-      }
-      return prevState + 1;
-    });
+    dispatch(paginateActions.goToNextPage());
+    console.log("NextPage");
   };
 
   let PreviousButton = <div className="w-[12px] h-[20px]"></div>;
-  if (pageNumber > 1) {
+  if (currentPage > 1) {
     PreviousButton = (
       <img
         src="/images/home-page/arrow-left-icon.svg"
@@ -41,7 +36,7 @@ export default function PageNumber({ limit }) {
       onClick={goToNextPage}
     />
   );
-  if (pageNumber === limit) {
+  if (currentPage === totalPage) {
     NextButton = <div className="w-[12px] h-[20px]"></div>;
   }
 
@@ -49,7 +44,7 @@ export default function PageNumber({ limit }) {
     <div className="flex items-center gap-4 w-[68px] mt-[18px] mx-auto pb-[56px]">
       {PreviousButton}
       <h6 className="text-blue4 text-base leading-[19px] font-black">
-        {pageNumber}
+        {currentPage}
       </h6>
       {NextButton}
     </div>

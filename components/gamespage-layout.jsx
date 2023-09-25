@@ -5,7 +5,7 @@ export default function GamesPageLayout({ children, imgDetailPage }) {
     <div
       className={`w-full  ${
         imgDetailPage
-          ? "bg-detailPage bg-no-repeat bg-cover bg-center"
+          ? "relative bg-detailPage bg-no-repeat bg-cover bg-center"
           : "bg-black2"
       }`}
     >
