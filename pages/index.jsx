@@ -6,6 +6,7 @@ import AllGames from "./../components/home-page/allgames";
 
 import getNewGames from "@/api-services/get-new-games";
 import getAllsGame from "@/api-services/get-all-games";
+import useAxiosPrivate from "./../hooks/useAxiosPrivate";
 
 export default function HomePage(props) {
   return (
@@ -22,6 +23,7 @@ export default function HomePage(props) {
 export async function getStaticProps() {
   const limitNum = 10;
   const pageNum = 1;
+
   try {
     const newGamesResult = await getNewGames(limitNum, pageNum);
     const allGamesResult = await getAllsGame(limitNum, pageNum);
@@ -53,8 +55,17 @@ export async function getStaticProps() {
     };
   } catch (err) {
     console.log(err);
-    return {
-      notFound: true,
-    };
+    // return {
+    //   notFound: true,
+    // };
+    // return {
+    //   props: {
+    //     backdropData: [],
+    //     newGamesData: [],
+    //     popularGamesData: [],
+    //     allGamesData: [],
+    //   },
+    //   revalidate: 600,
+    // };
   }
 }

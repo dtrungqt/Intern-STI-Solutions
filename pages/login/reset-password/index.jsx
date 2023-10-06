@@ -1,3 +1,7 @@
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+
 import AuthenticationLayout from "../../../components/authentication-layout";
 import InputPassword from "./../../../components/inputs/input-password";
 import Button from "./../../../components/button/button";
@@ -20,6 +24,20 @@ const passwordInputValidateFn = (value) => {
 };
 
 export default function ResetPasswordPage() {
+  const enteredName = useSelector((state) => state.email.name);
+  console.log(enteredName);
+
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const router = useRouter();
+
+  //Protected Routes
+  useEffect(() => {
+    if (!loggedIn) {
+      router.push("/login/forgot-password");
+      // return;
+    }
+  }, [loggedIn]);
+
   const {
     value: enteredPassword,
     isValid: enteredPasswordIsValid,

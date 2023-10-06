@@ -1,10 +1,16 @@
+import { useState } from "react";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 import AuthenticationLayout from "../../components/authentication-layout";
 import InputName from "../../components/inputs/input-name";
 import Button from "@/components/button/button";
 import InputPassword from "../../components/inputs/input-password";
 import useInput from "@/hooks/use-input";
+import request from "@/utils/axios";
+import { authAction } from "@/store/auth";
+import isAccessTokenValid from "./../../utils/checkAccessTokenExpiration";
 
 const pageData = {
   page: "login",
@@ -29,6 +35,10 @@ const passwordInputValidateFn = (value) => {
 };
 
 export default function LoginPage() {
+  const [errMessage, setErrMessage] = useState("");
+  const dispatch = useDispatch();
+  const router = useRouter();
+
   const {
     value: enteredName,
     isValid: enteredNameIsValid,
@@ -50,22 +60,55 @@ export default function LoginPage() {
   let formIsValid = false;
   if (enteredNameIsValid && enteredPasswordIsValid) formIsValid = true;
 
-  const formSubmissionHandler = (event) => {
-    console.log(`Form is Valid? ${formIsValid}`);
-    event.preventDefault();
+  const formSubmissionHandler = async (event) => {
+    try {
+      console.log(`Form is Valid? ${formIsValid}`);
+      event.preventDefault();
 
-    if (!formIsValid) {
-      //Chưa nhập form thì hiển thị lỗi
-      nameInputBlurHandler();
-      passwordInputBlurHandler();
-      return;
+      if (!formIsValid) {
+        //Chưa nhập form thì hiển thị lỗi
+        nameInputBlurHandler();
+        passwordInputBlurHandler();
+        return;
+      }
+
+      const loginData = { email: enteredName, password: enteredPassword };
+      console.log(loginData);
+      const res = await request.post("auth/login-email", loginData);
+
+      const accessToken = res.data.access_token;
+
+      const isLoggin = isAccessTokenValid(accessToken);
+      console.log(`trang thai: ${isLoggin}`);
+
+      //lưu Access Token vào local storage
+      localStorage.setItem("accessToken", accessToken);
+
+      // const payload = {
+      //   ...loginData,
+      //   accessToken,
+      //   loggedIn: true,
+      // };
+      // dispatch(authAction.setAuth(payload));
+      // console.log(res.data);
+
+      //CLEAR INPUT FIELDS
+      resetNameInput();
+      resetPasswordInput();
+      setErrMessage("");
+
+      router.push("/");
+    } catch (err) {
+      console.log(err);
+
+      if (!err?.response) {
+        setErrMessage("No Server Response!");
+      } else {
+        const message = err.response.statusText;
+        console.log(message);
+        setErrMessage(message);
+      }
     }
-
-    console.log(enteredName);
-    resetNameInput();
-
-    console.log(enteredPassword);
-    resetPasswordInput();
   };
 
   return (
@@ -100,6 +143,11 @@ export default function LoginPage() {
         >
           START
         </Button>
+        {!!errMessage && (
+          <h6 className="text-base text-red1 font-semibold mt-2">
+            {errMessage}
+          </h6>
+        )}
       </form>
     </AuthenticationLayout>
   );

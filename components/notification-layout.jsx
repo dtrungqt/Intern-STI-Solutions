@@ -27,7 +27,10 @@ export default function NotificationLayout({ pageData }) {
             {pageData.content.sub}
           </h6>
           {pageData.button.status === "success" && (
-            <Button className="mx-auto mt-8 bg-green1 shadow-successBtn">
+            <Button
+              className="mx-auto mt-8 bg-green1 shadow-successBtn"
+              link={pageData.button.link}
+            >
               Continue
               <img
                 src={pageData.button.img}

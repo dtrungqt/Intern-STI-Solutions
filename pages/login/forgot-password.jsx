@@ -1,8 +1,13 @@
+import { useState } from "react";
+
 import AuthenticationLayout from "../../components/authentication-layout";
 import Button from "./../../components/button/button";
 import InputName from "./../../components/inputs/input-name";
 import useInput from "../../hooks/use-input";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { emailAction } from "./../../store/email";
+import request from "../../utils/axios";
 
 const pageData = {
   page: "forgot",
@@ -22,6 +27,9 @@ const nameInputValidateFn = (value) => {
 };
 
 export default function ForgotPasswordPage() {
+  const [errMessage, setErrMessage] = useState("");
+
+  const dispatch = useDispatch();
   const router = useRouter();
 
   const {
@@ -35,21 +43,32 @@ export default function ForgotPasswordPage() {
 
   let formIsValid = enteredNameIsValid;
 
-  const formSubmissionHandler = (event) => {
-    console.log(`Form is Valid? ${formIsValid}`);
-    event.preventDefault();
+  const formSubmissionHandler = async (event) => {
+    try {
+      event.preventDefault();
 
-    if (!formIsValid) {
-      //Chưa nhập form thì hiển thị lỗi
-      nameInputBlurHandler();
-      return;
+      if (!formIsValid) {
+        //Chưa nhập form thì hiển thị lỗi
+        nameInputBlurHandler();
+        return;
+      }
+
+      // console.log(enteredName);
+      dispatch(emailAction.setEmail({ name: enteredName }));
+
+      const email = { email: enteredName };
+
+      await request.post("auth/forgot-password", email);
+
+      resetNameInput();
+      setErrMessage("");
+      //chuyển hướng sang trang Reset Password
+      router.push("/login/reset-password");
+    } catch (err) {
+      const message = err.response.data.message;
+      console.log(message);
+      setErrMessage(message);
     }
-
-    console.log(enteredName);
-    resetNameInput();
-
-    //chuyển hướng sang trang Reset Password
-    router.push("/login/reset-password");
   };
 
   return (
@@ -79,6 +98,11 @@ export default function ForgotPasswordPage() {
         >
           Back to Log in
         </Button>
+        {!!errMessage && (
+          <h6 className="text-base text-red1 font-semibold mt-2">
+            {errMessage}
+          </h6>
+        )}
       </form>
     </AuthenticationLayout>
   );

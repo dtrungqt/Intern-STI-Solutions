@@ -1,19 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
-import { paginateActions } from "../../store/index";
+import { paginateActions } from "../../store/paginate";
 
 export default function PageNumber() {
   const dispatch = useDispatch();
-  const currentPage = useSelector((state) => state.currentPage);
-  const totalPage = useSelector((state) => state.totalPage);
-
+  const currentPage = useSelector((state) => state.paginate.currentPage);
+  const totalPage = useSelector((state) => state.paginate.totalPage);
+  // console.log(totalPage);
   const goToPreviousPage = () => {
-    console.log("PreviousPage");
+    // console.log("PreviousPage");
     dispatch(paginateActions.goToPreviousPage());
   };
 
   const goToNextPage = () => {
     dispatch(paginateActions.goToNextPage());
-    console.log("NextPage");
+    // console.log("NextPage");
   };
 
   let PreviousButton = <div className="w-[12px] h-[20px]"></div>;
@@ -36,7 +36,7 @@ export default function PageNumber() {
       onClick={goToNextPage}
     />
   );
-  if (currentPage === totalPage) {
+  if (currentPage === totalPage || totalPage === 0) {
     NextButton = <div className="w-[12px] h-[20px]"></div>;
   }
 

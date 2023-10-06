@@ -1,7 +1,7 @@
-import request from "./../utils/request";
+import axios from "../utils/axios";
 
 export default async function getAllGames(limitNum, pageNum) {
-  const res = await request.get("games", {
+  const res = await axios.get("games", {
     params: { limit: limitNum, page: pageNum },
   });
 

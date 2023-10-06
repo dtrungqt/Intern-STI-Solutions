@@ -1,7 +1,7 @@
-import request from "./../utils/request";
+import axios from "./../utils/axios";
 
 export default async function getGameDetail(id) {
-  const res = await request.get(`games/detail/${id}`);
+  const res = await axios.get(`games/detail/${id}`);
 
   const result = res.data;
 

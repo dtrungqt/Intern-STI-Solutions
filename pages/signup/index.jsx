@@ -1,8 +1,12 @@
+import { useRouter } from "next/router";
+import { useState } from "react";
+
 import AuthenticationLayout from "./../../components/authentication-layout";
 import InputName from "./../../components/inputs/input-name";
 import InputPassword from "./../../components/inputs/input-password";
 import Button from "./../../components/button/button";
 import useInput from "./../../hooks/use-input";
+import request from "./../../utils/axios";
 
 const pageData = {
   page: "signup",
@@ -27,6 +31,9 @@ const passwordInputValidateFn = (value) => {
 };
 
 export default function SignupPage() {
+  const router = useRouter();
+  const [errMessage, setErrMessage] = useState("");
+
   const {
     value: enteredName,
     isValid: enteredNameIsValid,
@@ -48,22 +55,40 @@ export default function SignupPage() {
   let formIsValid = false;
   if (enteredNameIsValid && enteredPasswordIsValid) formIsValid = true;
 
-  const formSubmissionHandler = (event) => {
-    console.log(`Form is Valid? ${formIsValid}`);
-    event.preventDefault();
+  const formSubmissionHandler = async (event) => {
+    // console.log(`Form is Valid? ${formIsValid}`);
+    try {
+      event.preventDefault();
 
-    if (!formIsValid) {
-      //Chưa nhập form thì hiển thị lỗi
-      nameInputBlurHandler();
-      passwordInputBlurHandler();
-      return;
+      if (!formIsValid) {
+        //Chưa nhập form thì hiển thị lỗi
+        nameInputBlurHandler();
+        passwordInputBlurHandler();
+        return;
+      }
+      const newUser = {
+        email: enteredName,
+        password: enteredPassword,
+      };
+      console.log(newUser);
+      const res = await request.post("auth/signup", newUser);
+
+      // console.log(res);
+
+      //reset form
+      resetNameInput();
+      resetPasswordInput();
+      setErrMessage("");
+
+      //redirect
+      router.push("/signup/success");
+    } catch (err) {
+      // console.log(err);
+      const message = err.response.data.message;
+      console.log(message);
+      setErrMessage(message);
+      // router.push("/signup/fail");
     }
-
-    console.log(enteredName);
-    resetNameInput();
-
-    console.log(enteredPassword);
-    resetPasswordInput();
   };
 
   return (
@@ -90,6 +115,11 @@ export default function SignupPage() {
         >
           START
         </Button>
+        {!!errMessage && (
+          <h6 className="text-base text-red1 font-semibold mt-2">
+            {errMessage}
+          </h6>
+        )}
       </form>
     </AuthenticationLayout>
   );

@@ -44,6 +44,7 @@ const config: Config = {
         blue3: "rgba(20,58,79,1)",
         blue4: "rgba(2, 253, 253, 1)",
         blue5: "rgba(174, 200, 214, 1)",
+        blue6: "rgba(142, 84, 233,1)",
         green1: "rgba(61,231,50,1)",
         red1: "rgba(231, 50, 50, 1)",
         pink1: "rgba(251, 4, 255, 1)",

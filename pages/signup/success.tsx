@@ -15,7 +15,11 @@ const pageData = {
     main: "SUCCESS!",
     sub: "You're now a member of KinectPortal!",
   },
-  button: { status: "success", img: "/images/signup-page/next-icon.svg" },
+  button: {
+    status: "success",
+    img: "/images/signup-page/next-icon.svg",
+    link: "/login",
+  },
 };
 
 export default function SuccessfulSignupPage() {

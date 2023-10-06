@@ -1,11 +1,30 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { reloadPageAction } from "@/store/reload";
+
 export default function HeartIcon(props) {
-  const isFavorite = props.favorite;
-  const redHeart = props.imgRedHeart;
-  const transHeart = props.imgTransHeart;
+  // const [reloadPage, setReloadPage] = useState(false);
+  const dispatch = useDispatch();
+  const {
+    favorite: isFavorite,
+    imgRedHeart: redHeart,
+    imgTransHeart: transHeart,
+    onAddFavorite,
+  } = props;
 
-  if (isFavorite) {
-    return <img src={redHeart} alt="red heart icon" />;
-  }
+  const addFavoriteAndReloadPage = () => {
+    onAddFavorite().then(() => {
+      dispatch(reloadPageAction.reloadPageNow());
+    });
+  };
+  // console.log(reloadPage);
 
-  return <img src={transHeart} alt="trans heart icon" />;
+  return (
+    <img
+      src={isFavorite ? redHeart : transHeart}
+      alt={isFavorite ? "red heart icon" : "trans heart icon"}
+      onClick={addFavoriteAndReloadPage}
+      className="cursor-pointer"
+    />
+  );
 }

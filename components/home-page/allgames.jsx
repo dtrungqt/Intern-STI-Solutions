@@ -1,12 +1,13 @@
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 import GameItem from "../games/game-item";
 import Button from "../button/button";
 
-const genreData = ["Action", "Adventure", "Arcade", "Reality"];
-
 const AllGames = ({ gamesData, genre }) => {
   // console.log(gamesData);
+  const genreData = useSelector((state) => state.setGenres.genres);
+
   return (
     <div className="wrapper-homepage wrapper-allgames mt-[30px] pb-7">
       <div className="flex items-end justify-between">
@@ -36,24 +37,27 @@ const AllGames = ({ gamesData, genre }) => {
       {genre.display && (
         <div className="wrapper-homepage flex justify-start items-center gap-[2px]">
           {genreData.map((tag) => {
-            if (tag.toLowerCase() === genre.type.toLowerCase()) {
+            if (
+              tag.name.toLowerCase().replace(/\s/g, "") ===
+              genre.type.toLowerCase().replace(/\s/g, "")
+            ) {
               return (
                 <Link
-                  key={tag}
-                  href={`/allgames/${tag.toLowerCase()}`}
+                  key={tag.id}
+                  href={`/allgames/${tag.name.toLowerCase()}`}
                   className="flex items-center justify-center text-[10px] leading-3 p-[5px] rounded-[15px] bg-pink1 h-[17px]"
                 >
-                  {tag}
+                  {tag.name}
                 </Link>
               );
             }
             return (
               <Link
-                key={tag}
-                href={`/allgames/${tag.toLowerCase()}`}
+                key={tag.id}
+                href={`/allgames/${tag.name.toLowerCase().replace(/\s/g, "")}`} //loại bỏ khoảng trắng
                 className="flex items-center justify-center text-[10px] leading-3 p-[5px] rounded-[15px] bg-black4 h-[17px]"
               >
-                {tag}
+                {tag.name}
               </Link>
             );
           })}
@@ -63,7 +67,7 @@ const AllGames = ({ gamesData, genre }) => {
 
       {/* Card games  */}
       <div
-        className={`grid grid-cols-4 gap-[20px] ${
+        className={`grid grid-cols-4 grid-rows-2 gap-[20px] ${
           genre.display ? "mt-[10px]" : "mt-4"
         }`}
       >

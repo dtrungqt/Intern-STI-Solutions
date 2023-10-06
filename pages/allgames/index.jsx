@@ -1,36 +1,25 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { paginateActions } from "../../store/index";
+
+import { paginateActions } from "../../store/paginate";
+import { genresAction } from "./../../store/genres";
 
 import PageCustom from "@/components/allgames/page-custom";
 import getAllsGame from "@/api-services/get-all-games";
 import getAllGenres from "../../api-services/get-all-genres";
+import paginationHandler from "../../utils/paginate";
 
 const links = ["Home", "All Games"];
 
 const genreData = { display: true, type: "none" };
 
 export default function AllGamesPage(props) {
+  // console.log(props.allGenres);
   const dispatch = useDispatch();
-  const pageLimit = 8;
-  const pageNumber = useSelector((state) => state.currentPage);
+  dispatch(genresAction.setGenres({ genresData: props.allGenres }));
 
-  const totalPage = Math.ceil(props.allGamesData.length / pageLimit);
-  useEffect(() => {
-    dispatch(paginateActions.setTotalPage({ totalPage }));
-  }, [totalPage]);
-
-  let gameData = [];
-  if (pageNumber === 1) {
-    gameData = props.allGamesData.slice(0, pageLimit);
-  } else if (pageNumber === totalPage) {
-    gameData = props.allGamesData.slice((pageNumber - 1) * pageLimit);
-  } else {
-    gameData = props.allGamesData.slice(
-      (pageNumber - 1) * pageLimit,
-      (pageNumber - 1) * pageLimit + pageLimit
-    );
-  }
+  //XỬ LÝ ĐÁNH SỐ TRANG
+  const gameData = paginationHandler(props.allGamesData);
 
   return (
     <PageCustom links={links} allGamesData={gameData} genreData={genreData} />
